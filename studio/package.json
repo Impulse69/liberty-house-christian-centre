@@ -1,0 +1,25 @@
+{
+  "name": "liberty-house-studio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Sanity Studio (admin dashboard) for Liberty House Christian Centre.",
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "deploy-schema": "sanity schema deploy"
+  },
+  "dependencies": {
+    "@sanity/icons": "^3.7.0",
+    "@sanity/vision": "^5.28.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "sanity": "^5.28.0",
+    "styled-components": "^6.1.15"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "typescript": "^5.7.2"
+  }
+}

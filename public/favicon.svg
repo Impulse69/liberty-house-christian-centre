@@ -1,0 +1,12 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Liberty House Christian Centre">
+  <rect width="64" height="64" rx="14" fill="#15203a" />
+  <!-- flame -->
+  <path d="M32 9c2.6 2.6 4.2 5.1 4.2 7.7 0 2.5-1.9 4.4-4.2 4.4s-4.2-1.9-4.2-4.4c0-2.6 1.6-5.1 4.2-7.7z" fill="#e2c05c" />
+  <!-- roof -->
+  <path d="M32 21.5 51 35.5H13L32 21.5z" fill="#e2c05c" />
+  <!-- pillars / doorway -->
+  <rect x="18" y="35.5" width="5.5" height="17" rx="1" fill="#bd8b2a" />
+  <rect x="40.5" y="35.5" width="5.5" height="17" rx="1" fill="#bd8b2a" />
+  <path d="M27 52.5V43.5a5 5 0 0 1 10 0v9z" fill="#bd8b2a" />
+  <rect x="13" y="52.5" width="38" height="3.5" rx="1.5" fill="#e2c05c" />
+</svg>

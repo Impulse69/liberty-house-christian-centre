@@ -1,0 +1,144 @@
+@import 'tailwindcss';
+
+/*
+  Liberty House Christian Centre — Design System
+  Warm, spiritual, premium. Deep midnight navy + warm gold on soft ivory.
+*/
+@theme {
+  /* Typography */
+  --font-display: 'Fraunces', ui-serif, Georgia, Cambria, 'Times New Roman', serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Brand — Midnight (primary navy/indigo) */
+  --color-midnight-50: #f0f3fa;
+  --color-midnight-100: #dae1f1;
+  --color-midnight-200: #b7c4e3;
+  --color-midnight-300: #8ba0d0;
+  --color-midnight-400: #5e78b8;
+  --color-midnight-500: #3f59a0;
+  --color-midnight-600: #324781;
+  --color-midnight-700: #2a3a68;
+  --color-midnight-800: #1f2b4d;
+  --color-midnight-900: #15203a;
+  --color-midnight-950: #0c1426;
+
+  /* Brand — Gold (warm accent) */
+  --color-gold-50: #fbf6e9;
+  --color-gold-100: #f5e9c4;
+  --color-gold-200: #ecd692;
+  --color-gold-300: #e2c05c;
+  --color-gold-400: #d4a73a;
+  --color-gold-500: #bd8b2a;
+  --color-gold-600: #9c6f22;
+  --color-gold-700: #7c561f;
+  --color-gold-800: #634420;
+  --color-gold-900: #3d2a14;
+
+  /* Warm surfaces */
+  --color-cream: #faf6ee;
+  --color-ivory: #fffdf9;
+  --color-sand: #f3ecdf;
+
+  /* Elevation */
+  --shadow-soft: 0 1px 2px rgb(12 20 38 / 0.04), 0 8px 24px -8px rgb(12 20 38 / 0.10);
+  --shadow-card: 0 1px 2px rgb(12 20 38 / 0.05), 0 12px 32px -12px rgb(12 20 38 / 0.14);
+  --shadow-lift: 0 2px 4px rgb(12 20 38 / 0.06), 0 24px 56px -20px rgb(12 20 38 / 0.22);
+
+  /* Motion */
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-sand);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-midnight-800);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--color-midnight-950);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--color-gold-200);
+    color: var(--color-midnight-950);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold-500);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Respect reduced motion globally */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Eyebrow / kicker label used across section headers */
+  .kicker {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-gold-600);
+  }
+
+  /* Subtle radial halo used behind dark hero/CTA bands */
+  .halo {
+    background-image: radial-gradient(
+      60% 70% at 80% 10%,
+      rgb(189 139 42 / 0.22),
+      transparent 60%
+    );
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
