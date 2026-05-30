@@ -5,6 +5,7 @@ export default defineCliConfig({
     projectId: 'eoo28lss',
     dataset: 'production',
   },
+  studioHost: 'liberty-house-christian-centre',
   deployment: {
     autoUpdates: true,
   },
