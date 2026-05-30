@@ -1,20 +1,21 @@
 /**
- * Centralised, validated access to environment variables.
- * Throwing early gives a clear message instead of a cryptic runtime failure.
+ * Centralised access to Sanity connection settings.
+ *
+ * These values are PUBLIC (the project ID is visible in every browser request
+ * and is not a secret). Environment variables take precedence when provided;
+ * otherwise we fall back to the project's known public defaults so the app
+ * builds and runs even if env vars are not configured on the host.
  */
-function requireEnv(value: string | undefined, name: string): string {
-  if (!value) {
-    throw new Error(
-      `Missing required environment variable: ${name}. Copy .env.example to .env.local and fill it in.`,
-    )
-  }
-  return value
-}
+const FALLBACK = {
+  projectId: 'eoo28lss',
+  dataset: 'production',
+  apiVersion: '2024-10-01',
+} as const
 
 export const env = {
   sanity: {
-    projectId: requireEnv(import.meta.env.VITE_SANITY_PROJECT_ID, 'VITE_SANITY_PROJECT_ID'),
-    dataset: requireEnv(import.meta.env.VITE_SANITY_DATASET, 'VITE_SANITY_DATASET'),
-    apiVersion: import.meta.env.VITE_SANITY_API_VERSION || '2024-10-01',
+    projectId: import.meta.env.VITE_SANITY_PROJECT_ID || FALLBACK.projectId,
+    dataset: import.meta.env.VITE_SANITY_DATASET || FALLBACK.dataset,
+    apiVersion: import.meta.env.VITE_SANITY_API_VERSION || FALLBACK.apiVersion,
   },
 } as const
