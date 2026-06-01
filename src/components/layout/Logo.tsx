@@ -13,6 +13,11 @@ interface LogoProps {
 
 /** Brand lockup: uploaded logo if set, otherwise the built-in monogram + wordmark. */
 export function Logo({ logo, className, textClassName, subTextClassName }: LogoProps) {
+  const aspect = logo?.dimensions?.aspectRatio
+  // Treat a (roughly) square logo as a round badge so square/white-padded
+  // uploads render as the circular emblem they're meant to be.
+  const isRound = hasImage(logo) && (aspect === undefined || Math.abs(aspect - 1) < 0.2)
+
   return (
     <Link
       to="/"
@@ -20,11 +25,21 @@ export function Logo({ logo, className, textClassName, subTextClassName }: LogoP
       aria-label="Liberty House Christian Centre — home"
     >
       {hasImage(logo) ? (
-        <img
-          src={urlForImage(logo).height(160).fit('max').url()}
-          alt="Liberty House Christian Centre"
-          className="h-12 w-auto max-w-[220px] object-contain transition-transform duration-300 group-hover:-translate-y-0.5 sm:h-14"
-        />
+        isRound ? (
+          <span className="block h-12 w-12 shrink-0 overflow-hidden rounded-full transition-transform duration-300 group-hover:-translate-y-0.5 sm:h-14 sm:w-14">
+            <img
+              src={urlForImage(logo).width(220).height(220).fit('crop').url()}
+              alt="Liberty House Christian Centre"
+              className="h-full w-full scale-[1.12] object-cover"
+            />
+          </span>
+        ) : (
+          <img
+            src={urlForImage(logo).height(160).fit('max').url()}
+            alt="Liberty House Christian Centre"
+            className="h-12 w-auto max-w-[220px] object-contain transition-transform duration-300 group-hover:-translate-y-0.5 sm:h-14"
+          />
+        )
       ) : (
         <>
           <svg
