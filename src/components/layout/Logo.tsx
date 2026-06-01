@@ -9,12 +9,10 @@ interface LogoProps {
   className?: string
   textClassName?: string
   subTextClassName?: string
-  /** Adds a light backing so an uploaded logo stays legible on dark surfaces. */
-  onDark?: boolean
 }
 
 /** Brand lockup: uploaded logo if set, otherwise the built-in monogram + wordmark. */
-export function Logo({ logo, className, textClassName, subTextClassName, onDark }: LogoProps) {
+export function Logo({ logo, className, textClassName, subTextClassName }: LogoProps) {
   return (
     <Link
       to="/"
@@ -23,12 +21,9 @@ export function Logo({ logo, className, textClassName, subTextClassName, onDark 
     >
       {hasImage(logo) ? (
         <img
-          src={urlForImage(logo).height(120).fit('max').url()}
+          src={urlForImage(logo).height(160).fit('max').url()}
           alt="Liberty House Christian Centre"
-          className={cn(
-            'h-10 w-auto max-w-[210px] object-contain transition-transform duration-300 group-hover:-translate-y-0.5 sm:h-11',
-            onDark && 'rounded-lg bg-white/95 p-1.5 shadow-soft',
-          )}
+          className="h-12 w-auto max-w-[220px] object-contain transition-transform duration-300 group-hover:-translate-y-0.5 sm:h-14"
         />
       ) : (
         <>

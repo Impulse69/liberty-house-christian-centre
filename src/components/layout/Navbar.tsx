@@ -32,11 +32,7 @@ export function Navbar() {
       )}
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:h-20 sm:px-6 lg:px-8">
-        <Logo
-          logo={logo}
-          onDark={!solid}
-          textClassName={solid ? 'text-midnight-950' : 'text-ivory'}
-        />
+        <Logo logo={logo} textClassName={solid ? 'text-midnight-950' : 'text-ivory'} />
 
         <ul className="hidden items-center gap-1 lg:flex">
           {mainNav.map((link) => (

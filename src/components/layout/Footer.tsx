@@ -16,7 +16,7 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Logo logo={logo} onDark textClassName="text-ivory" />
+            <Logo logo={logo} textClassName="text-ivory" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-midnight-300">
               {tagline}. A family of faith in {siteConfig.foundedCity}, {siteConfig.country}.
             </p>
