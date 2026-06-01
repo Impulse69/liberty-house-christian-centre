@@ -54,6 +54,15 @@ export const siteSettings = defineType({
       type: 'image',
       options: { hotspot: true },
       group: 'general',
+      description: 'Shown in the website header and footer. Use a transparent PNG/SVG if possible.',
+    }),
+    defineField({
+      name: 'favicon',
+      title: 'Favicon / app icon',
+      type: 'image',
+      group: 'general',
+      description:
+        'Small square icon for the browser tab and phone home screen. If empty, your logo is used.',
     }),
     defineField({
       name: 'phones',

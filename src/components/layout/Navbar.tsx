@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { mainNav, siteConfig } from '@/config/site.config'
 import { useScrolled } from '@/hooks/useScrolled'
+import { useSiteData } from '@/hooks/useSiteData'
 import { buttonVariants } from '@/components/ui/Button'
 import { Logo } from './Logo'
 import { cn } from '@/utils/cn'
@@ -12,6 +13,7 @@ export function Navbar() {
   const scrolled = useScrolled(16)
   const [open, setOpen] = useState(false)
   const location = useLocation()
+  const { logo } = useSiteData()
 
   // Close the mobile drawer on navigation.
   useEffect(() => {
@@ -31,6 +33,8 @@ export function Navbar() {
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:h-20 sm:px-6 lg:px-8">
         <Logo
+          logo={logo}
+          onDark={!solid}
           textClassName={solid ? 'text-midnight-950' : 'text-ivory'}
         />
 

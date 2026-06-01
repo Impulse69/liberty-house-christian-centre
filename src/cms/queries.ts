@@ -14,6 +14,7 @@ export const siteSettingsQuery = /* groq */ `
 *[_type == "siteSettings"][0]{
   _id, title, tagline, mission, about, vision,
   logo ${IMAGE},
+  favicon ${IMAGE},
   phones, email, poBox, address,
   serviceTimes[]{ name, day, time, note },
   socials[]{ platform, href },

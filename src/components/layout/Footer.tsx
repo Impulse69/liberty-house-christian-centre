@@ -1,16 +1,13 @@
 import { Link } from 'react-router-dom'
 import { Clock, Mail, MapPin, Phone } from 'lucide-react'
-import {
-  contactInfo,
-  footerNav,
-  serviceTimes,
-  siteConfig,
-  socialLinks,
-} from '@/config/site.config'
+import { footerNav, siteConfig } from '@/config/site.config'
+import { useSiteData } from '@/hooks/useSiteData'
+import { Logo } from './Logo'
 import { SocialIcon } from './SocialIcon'
 
 export function Footer() {
   const year = new Date().getFullYear()
+  const { logo, tagline, phones, email, poBox, city, country, serviceTimes, socials } = useSiteData()
 
   return (
     <footer className="relative overflow-hidden bg-midnight-950 text-midnight-200">
@@ -19,16 +16,12 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <h3 className="font-display text-2xl text-ivory">Liberty House</h3>
-            <p className="mt-1 text-xs font-semibold tracking-[0.22em] text-gold-400">
-              CHRISTIAN CENTRE
-            </p>
+            <Logo logo={logo} onDark textClassName="text-ivory" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-midnight-300">
-              {siteConfig.tagline}. A family of faith in {siteConfig.foundedCity},{' '}
-              {siteConfig.country}.
+              {tagline}. A family of faith in {siteConfig.foundedCity}, {siteConfig.country}.
             </p>
             <div className="mt-6 flex items-center gap-3">
-              {socialLinks.map((social) => (
+              {socials.map((social) => (
                 <a
                   key={social.platform}
                   href={social.href}
@@ -84,7 +77,7 @@ export function Footer() {
           <div>
             <h4 className="text-sm font-semibold uppercase tracking-wider text-ivory">Contact</h4>
             <ul className="mt-5 space-y-4 text-sm">
-              {contactInfo.phones.map((phone) => (
+              {phones.map((phone) => (
                 <li key={phone} className="flex gap-3">
                   <Phone className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" strokeWidth={1.8} />
                   <a
@@ -98,18 +91,18 @@ export function Footer() {
               <li className="flex gap-3">
                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" strokeWidth={1.8} />
                 <a
-                  href={`mailto:${contactInfo.email}`}
+                  href={`mailto:${email}`}
                   className="break-all text-midnight-300 transition-colors hover:text-gold-300"
                 >
-                  {contactInfo.email}
+                  {email}
                 </a>
               </li>
               <li className="flex gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" strokeWidth={1.8} />
                 <span className="text-midnight-300">
-                  {contactInfo.poBox}
+                  {poBox}
                   <br />
-                  {contactInfo.city}, {contactInfo.country}
+                  {city}, {country}
                 </span>
               </li>
             </ul>

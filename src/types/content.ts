@@ -115,6 +115,7 @@ export interface SiteSettings {
   mission?: string
   vision?: RichText
   logo?: SanityImageRef
+  favicon?: SanityImageRef
   phones?: string[]
   email?: string
   poBox?: string

@@ -9,21 +9,20 @@ import { Input } from '@/components/ui/Input'
 import { Textarea } from '@/components/ui/Textarea'
 import { Button } from '@/components/ui/Button'
 import { SocialIcon } from '@/components/layout/SocialIcon'
-import { contactInfo, serviceTimes, socialLinks } from '@/config/site.config'
+import { useSiteData } from '@/hooks/useSiteData'
 import { fadeInUp, staggerContainer } from '@/animations/variants'
 import { revealViewport } from '@/animations/transitions'
 
 export function Contact() {
+  const { phones, email, poBox, city, country, serviceTimes, socials } = useSiteData()
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [sent, setSent] = useState(false)
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
     const subject = encodeURIComponent(`Website enquiry from ${form.name || 'a visitor'}`)
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`,
-    )
-    window.location.href = `mailto:${contactInfo.email}?subject=${subject}&body=${body}`
+    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`
     setSent(true)
   }
 
@@ -54,7 +53,7 @@ export function Contact() {
                 Reach out
               </motion.h2>
               <motion.ul variants={fadeInUp} className="mt-6 space-y-5">
-                {contactInfo.phones.map((phone) => (
+                {phones.map((phone) => (
                   <li key={phone} className="flex items-start gap-4">
                     <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-midnight-900 text-gold-300">
                       <Phone className="h-5 w-5" strokeWidth={1.7} />
@@ -77,10 +76,10 @@ export function Contact() {
                   <div>
                     <p className="text-sm text-midnight-500">Email us</p>
                     <a
-                      href={`mailto:${contactInfo.email}`}
-                      className="font-medium text-midnight-900 hover:text-gold-600"
+                      href={`mailto:${email}`}
+                      className="font-medium break-all text-midnight-900 hover:text-gold-600"
                     >
-                      {contactInfo.email}
+                      {email}
                     </a>
                   </div>
                 </li>
@@ -90,15 +89,18 @@ export function Contact() {
                   </span>
                   <div>
                     <p className="text-sm text-midnight-500">Postal address</p>
-                    <p className="font-medium text-midnight-900">{contactInfo.poBox}</p>
+                    <p className="font-medium text-midnight-900">{poBox}</p>
                     <p className="text-sm text-midnight-500">
-                      {contactInfo.city}, {contactInfo.country}
+                      {city}, {country}
                     </p>
                   </div>
                 </li>
               </motion.ul>
 
-              <motion.div variants={fadeInUp} className="mt-8 rounded-2xl border border-sand bg-white p-6 shadow-soft">
+              <motion.div
+                variants={fadeInUp}
+                className="mt-8 rounded-2xl border border-sand bg-white p-6 shadow-soft"
+              >
                 <h3 className="text-sm font-semibold uppercase tracking-wider text-midnight-900">
                   Service times
                 </h3>
@@ -114,20 +116,22 @@ export function Contact() {
                 </ul>
               </motion.div>
 
-              <motion.div variants={fadeInUp} className="mt-6 flex items-center gap-3">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.platform}
-                    href={social.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={social.label}
-                    className="flex h-11 w-11 items-center justify-center rounded-full border border-sand bg-white text-midnight-700 transition-colors hover:border-gold-400 hover:text-gold-600"
-                  >
-                    <SocialIcon platform={social.platform} className="h-[18px] w-[18px]" />
-                  </a>
-                ))}
-              </motion.div>
+              {socials.length > 0 && (
+                <motion.div variants={fadeInUp} className="mt-6 flex items-center gap-3">
+                  {socials.map((social) => (
+                    <a
+                      key={social.platform}
+                      href={social.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={social.label}
+                      className="flex h-11 w-11 items-center justify-center rounded-full border border-sand bg-white text-midnight-700 transition-colors hover:border-gold-400 hover:text-gold-600"
+                    >
+                      <SocialIcon platform={social.platform} className="h-[18px] w-[18px]" />
+                    </a>
+                  ))}
+                </motion.div>
+              )}
             </motion.div>
 
             {/* Form */}
@@ -146,8 +150,8 @@ export function Contact() {
                   <div className="mt-6 rounded-2xl border border-gold-200 bg-gold-50 p-5 text-sm text-midnight-700">
                     Thank you! Your email app should now be open with your message ready to send. If
                     not, email us directly at{' '}
-                    <a className="font-semibold text-gold-700" href={`mailto:${contactInfo.email}`}>
-                      {contactInfo.email}
+                    <a className="font-semibold text-gold-700" href={`mailto:${email}`}>
+                      {email}
                     </a>
                     .
                   </div>
