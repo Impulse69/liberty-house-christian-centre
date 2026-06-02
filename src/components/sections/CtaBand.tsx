@@ -4,12 +4,13 @@ import { Clock, MapPin } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
 import { buttonVariants } from '@/components/ui/Button'
-import { contactInfo, serviceTimes } from '@/config/site.config'
+import { useSiteData } from '@/hooks/useSiteData'
 import { fadeInUp, staggerContainer } from '@/animations/variants'
 import { revealViewport } from '@/animations/transitions'
 import { cn } from '@/utils/cn'
 
 export function CtaBand() {
+  const { serviceTimes, city, country } = useSiteData()
   return (
     <Section tone="cream" size="lg">
       <Container>
@@ -75,7 +76,7 @@ export function CtaBand() {
                 <div>
                   <p className="font-medium text-ivory">Find us</p>
                   <p className="text-sm text-midnight-200">
-                    {contactInfo.city}, {contactInfo.country}
+                    {city}, {country}
                   </p>
                 </div>
               </div>

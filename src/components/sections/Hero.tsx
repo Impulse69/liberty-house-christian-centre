@@ -5,13 +5,15 @@ import { Container } from '@/components/ui/Container'
 import { SanityImage } from '@/components/common/SanityImage'
 import { buttonVariants } from '@/components/ui/Button'
 import { useHeroBanners } from '@/hooks/useContent'
-import { serviceTimes, siteConfig } from '@/config/site.config'
+import { useSiteData } from '@/hooks/useSiteData'
+import { siteConfig } from '@/config/site.config'
 import { hasImage } from '@/services/sanity/image'
 import { fadeInUp, staggerContainer } from '@/animations/variants'
 import { cn } from '@/utils/cn'
 
 export function Hero() {
   const { data: banners } = useHeroBanners()
+  const { serviceTimes } = useSiteData()
   const hero = banners?.[0]
 
   const title = hero?.title ?? 'A place to belong, believe and become'
